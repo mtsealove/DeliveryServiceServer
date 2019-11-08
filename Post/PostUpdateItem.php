@@ -14,6 +14,7 @@ $file_error    = $_FILES["img_file"]["error"];
 $ItemName=$_POST["ItemName"];
 $Price=$_POST["Price"];
 $Des=$_POST["Des"];
+$ItemID=$_POST["ItemID"];
 
 if ($file_name && !$file_error)
 	{
@@ -33,13 +34,15 @@ if ($file_name && !$file_error)
 
 		if (!move_uploaded_file($file_tmp_name, $uploaded_file) )
 		{
+            /*
 				echo("
 					<script>
 					alert('파일을 지정한 디렉토리에 복사하는데 실패했습니다.');
 					history.go(-1);
 					</script>
 				");
-				exit;
+                exit;
+                */
 		}
 	}
 	else 
@@ -52,18 +55,18 @@ if ($file_name && !$file_error)
     # ID, ItemName, Price, ManagerID, ImagePath
 
     //데이터베이스 조작
-    $query="insert into items(ItemName, Price, ManagerID, ImagePath, Des) values(
-        '{$ItemName}', 
-        '{$Price}', '"
-        .$_SESSION['UserID']."', '"
-		.$copied_file_name."',
-		'{$Des}')";
+    $updateQuery="update items set ItemName='".$ItemName."', Price=".$Price.", Des='".$Des."'";
+    if($copied_file_name)
+    $updateQuery=$updateQuery.", ImagePath='".$copied_file_name."' ";
+    $updateQuery=$updateQuery." where ID={$ItemID}";
 
-    mysqli_query($db["conn"], $query);
+    echo $updateQuery;
+
+    mysqli_query($db["conn"], $updateQuery);
     mysqli_close($db["conn"]);
     
     echo "<script>
-    alert('상품이 등록되었습니다');
+    alert('상품이 수정되었습니다');
     location.href='../ItemList.php?current=1'
     </script>";
 ?>

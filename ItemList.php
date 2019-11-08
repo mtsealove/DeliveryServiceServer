@@ -6,8 +6,15 @@
     <?php
     include_once "head.php";
     include_once "config.php";
+
+    if (empty($_SESSION["UserID"]) || empty($_SESSION["UserName"])) {
+        echo "<script>
+        alert('비정상적인 접근입니다');
+        location.href='Login.php'
+        </script>";
+    }
     if (empty($_GET["sort"]))
-        $sort = "total asc";
+        $sort = "total desc";
     else
         $sort = $_GET["sort"];
     ?>
@@ -35,7 +42,7 @@
     ?>
 
 
-    <div class="bg-transpert main_div" style="padding:20px">
+    <div class="bg-transpert main_div">
         <div>
             <h3 class="card-title">상품</h3>
             <!--상품 정렬기준-->
@@ -62,7 +69,7 @@
                 <?php
                     include_once "config.php";
                     $query = "select II.*, TT.total from Items II left outer join
-            (select I.ID as ID, format(sum(I.price), 0) as total from orders O
+            (select I.ID as ID, sum(I.price) as total from orders O
             join Items I
             on O.ItemID=I.ID
             group by ID
@@ -79,19 +86,22 @@
                         $price = $data['Price'];
                         $path = $data['ImagePath'];
                         $ItemName = $data["ItemName"];
+                        $itemID=$data["ID"];
                         $index++;
+
                         //카드 뷰 출력
-                        echo '  <div class="card">
-        <img class="card-img-top" height="180" src="./Images/' . $path . '" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">' . $ItemName . '</h5>
-            <p class="card-text">매출: ₩' . $total . '</p>
-        </div>
-        <div class="card-footer">
-            <small class="text-muted">상품가격: ₩' . $price . '</small>
-        </div>
-    </div>';
-                    }
+                        ?>
+                    <div class="card" onclick="location.href='InquireItem.php?current=2&ItemID=<?=$itemID?>'">
+                        <img class="card-img-top" height="180" src="./Images/<?=$path?>" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title"><?=$ItemName?></h5>
+                            <p class="card-text">매출: ₩<?=number_format($total)?></p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">상품가격: ₩<?=number_format($price)?></small>
+                        </div>
+                    </div>
+                <?php  }
                     for ($i = 0; $i < 6 - $index; $i++) {
                         echo '<div class="card" style="visibility:hidden"></div>';
                     }
@@ -127,11 +137,11 @@
                         <a class="page-link" href="?current=1&page=<?= $page - 1 ?>&sort=<?= $sort ?>" tabindex="-1">이전</a>
                     </li>
                     <?php
-                    $tmp_page=$total_page;
-                    while($tmp_page/10!=0) {
+                    $tmp_page = $total_page;
+                    while ($tmp_page / 10 != 0) {
                         $tmp_page--;
                     }
-                    for ($p = $tmp_page; $p < $tmp_page+10; $p++) {
+                    for ($p = $tmp_page; $p < $tmp_page + 10; $p++) {
                         //현재 페이지
                         if ($page == $p) { ?>
                             <li class="page-item active">
