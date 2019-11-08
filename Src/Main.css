@@ -7,13 +7,12 @@ body {
     padding: 15px;
 }
 
-
-
 .login_div {
     position: absolute;
     width: 400px;
     top: 35%;
-    left: 50%;;
+    left: 50%;
+    ;
     margin-left: -200px;
 }
 
@@ -21,14 +20,25 @@ body {
     position: absolute;
     width: 400px;
     top: 20%;
-    left: 50%;;
+    left: 50%;
+    ;
     margin-left: -200px;
 }
 
 .main_div {
     position: absolute;
     width: 80%;
-    height: 85%;
     left: 10%;
     top: 10%;
+}
+
+.card-item {
+    height: 300px;
+    width: 600px;
+}
+.pagination {
+    justify-content: center;
+}
+#item_img {
+    margin: 20px;
 }

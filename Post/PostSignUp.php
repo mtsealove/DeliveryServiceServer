@@ -1,5 +1,5 @@
 <?php
-include_once "config.php";
+include_once "../config.php";
 $id = $_POST["id"];
 $pw = $_POST["pw"];
 $name = $_POST["name"];
@@ -13,4 +13,7 @@ $query = "insert into Managers values('$id', '$pw', '$name', '$business_name', '
 mysqli_query($db["conn"], $query);
 mysqli_close($db["conn"]);
 //로그인 페이지로 이동
-echo "<script>location.href='Login.php'</script>";
+echo "<script>
+alert('회원가입이 완료되었습니다.');
+location.href='../Login.php';
+</script>";

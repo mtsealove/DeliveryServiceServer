@@ -1,5 +1,5 @@
 <?php
-    include_once "config.php";
+    include_once "../config.php";
     $ID=$_POST["ID"];
     $password=$_POST["password"];
 
@@ -19,10 +19,11 @@
         //세션에 저장
         $_SESSION["UserID"]=$row["ID"];
         $_SESSION["UserName"]=$row["BusinessName"];
+        $username=$_SESSION["UserName"];
         
         //메인 페이지로 이동
         echo "<script>
-        location.href='Home.php?current=0';
+        location.href='../Home.php?current=0';
         </script>";
     }
 ?>

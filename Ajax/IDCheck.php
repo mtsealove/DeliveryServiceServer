@@ -1,5 +1,5 @@
 <?php
-include_once "config.php";
+include_once "../config.php";
 $ID = $_POST["ID"];
 $query = "select ID from Managers where ID='$ID'";
 $result = mysqli_query($db["conn"], $query);
@@ -9,5 +9,6 @@ if ($numRow == 0) {
 } else {
     $ret["check"] = false;
 }
-
+mysqli_close($db["conn"]);
 echo json_encode($ret);
+?>
