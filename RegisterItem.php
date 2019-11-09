@@ -87,7 +87,7 @@
                 <textarea class="form-control rows="5" name="Des"  placeholder="상품 설명"></textarea>
                 <br>
                 <label>상품 이미지 선택</label>
-                <input type="file" accept="image/*" class="form-control-file" placeholder="상품명" id="file_input" name="img_file" />
+                <input type="file" accept="image/*" class="form-control-file" id="file_input" name="img_file" />
                 <br>
             </form>
             <img id="item_img" width="90%" height="auto" src="./Images/americano.jpg" class="rounded" />

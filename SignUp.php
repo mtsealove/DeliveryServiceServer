@@ -107,7 +107,7 @@
         <div class="bg-transpert signup_div center-block">
             <h3 class="card-title">회원가입</h3>
             <div class="form-group">
-                <form id="sign_up_form" method="POST" action="./Post/PostSignUp.php">
+                <form id="sign_up_form" method="POST" action="./Post/PostSignUp.php" enctype="multipart/form-data"> 
                     <input hidden id="id_check" data-check="0">
                     <input class="form-control" id="id_input" name="id" type="text" placeholder="ID">
                     <span id="id_deny" style="color:red">이미 사용중인 ID입니다</span>
@@ -119,6 +119,8 @@
                     <input class="form-control" id="business_name_input" name="business_name" type="text" placeholder="사업장명"><br>
                     <input class="form-control" id="business_num_input" name="business_num" type="text" placeholder="사업자 번호"><br>
                     <input class="form-control" id="business_addr_input" name="business_addr" type="text" placeholder="사업장 주소지"><br>
+                    <label>대표사진 설정</label>
+                    <input type="file" accept="image/*" class="form-control-file" id="file_input" name="img_file" /><br>
                     <div class="form-group">
                         <label>상품 분류</label><br>
                         <select class="form-confrol" name="cat" id="cat_select">
