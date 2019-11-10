@@ -17,5 +17,5 @@ while ($row = mysqli_fetch_array($result)) {
         'ProfileImage' => $row["ProfileImage"]
     ));
 }
-
+mysqli_close($db["conn"]);
 echo json_encode($data, JSON_UNESCAPED_UNICODE);

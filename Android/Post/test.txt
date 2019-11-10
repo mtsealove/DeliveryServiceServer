@@ -1,0 +1,2 @@
+insert into orders(ItemID, managerid, memberid, ordertime, location, status)
+values(12, 'mtsealove', 'daJQU6B_fpI', '2019-11-10 21:14:58', '대한민국 경기도 성남시 수정구 복정동 554-1', 0)
