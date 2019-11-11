@@ -6,14 +6,22 @@ $OrderTime = $_POST["OrderTime"];
 $Location = $_POST["Location"];
 $ItemID = $_POST["ItemID"];
 
-$query = "insert into orders(ItemID, managerid, memberid, ordertime, location, status)
-values($ItemID, '$ManagerID', '$MemberID', '$OrderTime', '$Location', 0)";
+//기본 위치를 가게로 설정
+$locationQuery="select BusinessAddress from Managers where ID='$ManagerID'";
+$result=mysqli_query($db["conn"], $locationQuery);
+mysqli_data_seek($result, 0);
+while($row=mysqli_fetch_array($result)) {
+    $location=$row["BusinessAddress"];
+}
 
-$file=fopen("test.txt", "w");
-fwrite($file, $query);
-fclose($file);
+//주문 삽입
+$query = "insert into orders(ItemID, managerid, memberid, ordertime, location, status, CurrentLocation)
+values($ItemID, '$ManagerID', '$MemberID', '$OrderTime', '$Location', 1, '$location')";
 
+//최근 배송지 변경
+$updateQuery="update members set RecentAddrss='$Location' where MemeberID='$MemberID'";
 mysqli_query($db["conn"], $query);
+mysqli_query($db["conn"], $updateQuery);
 mysqli_close($db["conn"]);
 
 $result = array(

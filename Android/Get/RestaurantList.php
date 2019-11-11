@@ -4,6 +4,7 @@ $cat = $_GET["Cat"];
 $query = "select ID, BusinessName, BusinessAddress, Category, ProfileImage
 from Managers
 where Category=$cat";
+
 $result = mysqli_query($db["conn"], $query);
 
 $data = array();

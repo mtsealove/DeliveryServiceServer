@@ -1,2 +1,2 @@
 insert into orders(ItemID, managerid, memberid, ordertime, location, status)
-values(12, 'mtsealove', 'daJQU6B_fpI', '2019-11-10 21:14:58', '대한민국 경기도 성남시 수정구 복정동 554-1', 0)
+values(3, 'mtsealove', 'daJQU6B_fpI', '2019-11-11 20:28:53', '대한민국 서울특별시 광진구 구의동 246-15', 1)

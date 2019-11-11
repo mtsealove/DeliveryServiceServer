@@ -48,6 +48,7 @@
                 $index = 0;
                 while ($data = mysqli_fetch_array($orderResult)) {
                     $index++;
+                
                     //첫 데이터인지 확인
                     if ($isFirst) {
                         $lastTime = $data["OrderTime"];
@@ -65,6 +66,11 @@
 
                     //마지막인지 확인
                     if ($orderTime != $lastTime || $location != $lastLocation || $index > $numOfRow) {
+                        //card 크기 조절
+                        for($i=0;$i<4-$index; $i++) {
+                            echo '<div class="card" style="visibility:hidden"></div>';
+                        }
+                        $index=0;
                         ?>
             </div>
             <div class="order-content-div">
@@ -96,6 +102,9 @@
             </div>
 
         <?php
+        }
+        for($i=0;$i<3-$index; $i++) {
+            echo '<div class="card" style="visibility:hidden"></div>';
         }
         ?>
             </div>

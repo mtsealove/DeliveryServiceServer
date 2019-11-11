@@ -1,0 +1,3 @@
+select ID, BusinessName, BusinessAddress, Category, ProfileImage
+from Managers
+where Category=2

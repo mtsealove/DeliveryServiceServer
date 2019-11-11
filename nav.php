@@ -9,7 +9,7 @@ if (isset($_GET["current"])) {
   </script>";
 }
 $classes = [];
-for ($i = 0; $i < 4; $i++)
+for ($i = 0; $i < 5; $i++)
   $classes[$i] = 'nav-item';
 $classes[$current] = 'nav-item active';
 ?>
@@ -43,6 +43,10 @@ $classes[$current] = 'nav-item active';
       </li>
       <li class="<?= $classes[3] ?>">
         <a class="nav-link" href="Sales.php?current=3">매출</a>
+      </li>
+
+      <li class="<?= $classes[4] ?>">
+        <a class="nav-link" href="Review.php?current=4">리뷰</a>
       </li>
     </ul>
     <!--
