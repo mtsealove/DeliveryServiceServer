@@ -8,7 +8,8 @@ $data=array();
 while($row=mysqli_fetch_array($result)) {
     array_push($data, array(
         "OrderTime"=>$row["OrderTime"],
-        "Location"=>$row["Location"]
+        "Location"=>$row["Location"],
+        "OrderID"=>$row["OrderID"]
     ));
 }
 

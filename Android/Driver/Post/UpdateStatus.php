@@ -16,7 +16,7 @@ try {
     if ($status == 4) {
         $now = new DateTime();
         $compelteTime = $now->format('Y-m-d H:i:s');
-        $timeQuery="update orders set completeTime='$compelteTime' where managerID='$mangerID' and ordertime='$time'";
+        $timeQuery = "update orders set completeTime='$compelteTime' where managerID='$mangerID' and ordertime='$time'";
         mysqli_query($db["conn"], $timeQuery);
     }
     $result = array(

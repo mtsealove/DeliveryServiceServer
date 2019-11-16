@@ -2,7 +2,7 @@
 include_once "../../config.php";
 $id = $_POST["ID"];
 $password = $_POST["Password"];
-$token=$_POST["Token"];
+$token = $_POST["Token"];
 
 $query = "select ID, Name, ManagerID from drivers
 where ID='$id'
@@ -25,7 +25,7 @@ if ($numOfRow == 0) {
     );
     echo json_encode($data, JSON_UNESCAPED_UNICODE);
 } else {
-    $tokenQuery="update Drivers set token='$token' where ID='$id'";
+    $tokenQuery = "update Drivers set token='$token' where ID='$id'";
     mysqli_query($db["conn"], $tokenQuery);
     $data = array(
         "ID" => $ID,

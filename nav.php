@@ -25,7 +25,8 @@ $classes[$current] = 'nav-item active';
 </script>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">배달주문 서비스</a>
+  <img src="Src/delivery_logo.png" id="app_icon" height="40" width="40" style="margin-right:10px"/>
+  <a class="navbar-brand" href="#">주문배달 서비스</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -54,16 +55,16 @@ $classes[$current] = 'nav-item active';
     <button class="btn btn-link" id="logout_btn">로그아웃</button>
     </div>
 -->
-<div class="btn-group dropleft">
-  <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <?=$_SESSION["UserName"]?>
-  </button>
-  <div class="dropdown-menu">
-    <!-- Dropdown menu links -->
-    <a class="dropdown-item" id="logout_btn">로그아웃</a>
-  </div>
-</div>
+    <div class="btn-group dropleft">
+      <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <?= $_SESSION["UserName"] ?>
+      </button>
+      <div class="dropdown-menu">
+        <!-- Dropdown menu links -->
+        <a class="dropdown-item" id="logout_btn">로그아웃</a>
+      </div>
+    </div>
 
-    
+
   </div>
 </nav>

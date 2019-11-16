@@ -19,10 +19,32 @@
 
             $('#id_deny').hide();
             $('#id_allow').hide();
+            $('#pw_deny').hide();
+            $('#pw_allow').hide();
+            $('#pw_dif').hide();
+            $('#pw_same').hide();
 
             $('#id_input').change(function() {
                 CheckIDAllow();
             });
+            $('#pw_input').change(function() {
+                if (CheckPassword()) {
+                    $('#pw_deny').hide();
+                    $('#pw_allow').show();
+                } else {
+                    $('#pw_deny').show();
+                    $('#pw_allow').hide();
+                }
+            });
+            $('#pw_confirm_input').change(function() {
+                if (SamePassword()) {
+                    $('#pw_dif').hide();
+                    $('#pw_same').show();
+                } else {
+                    $('#pw_dif').show();
+                    $('#pw_same').hide();
+                }
+            })
         });
 
         function CheckInput() {
@@ -66,12 +88,62 @@
                 $('#id_deny').show();
                 $('#id_input').focus();
                 return;
+            } else if ($('#pw_check').attr('data-check') == 0) {
+                $('#pw_deny').show();
+                $('#pw_input').focus();
+                return;
             } else if ($('#cat_select').val() == 0) {
                 alert('상품 분류를 선택하세요');
                 $('#cat_select').focus();
             } else {
                 $('#sign_up_form').submit();
             }
+        }
+
+        function CheckPassword() {
+            var password = $('#pw_input').val();
+            var lowerB = false;
+            var upperB = false;
+            var specialB = false;
+
+            var lower = "abcdefghijklmnopqrstuvwxyz";
+            var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var special = "!@#$%^&*()_+-=,./<>[]{}";
+
+            for (var i = 0; i < lower.length; i++) {
+                if (password.indexOf(lower.charAt(i))) {
+                    lowerB = true;
+                    break;
+                }
+            }
+            for (var i = 0; i < upper.length; i++) {
+                if (password.indexOf(upper.charAt(i))) {
+                    upperB = true;
+                    break;
+                }
+            }
+            for (var i = 0; i < special.length; i++) {
+                if (password.indexOf(special.charAt(i))) {
+                    specialB = true;
+                    break;
+                }
+            }
+
+            if (lowerB && upperB && specialB && password.length > 8){
+                $('#pw_check').attr('data-check', '1');
+                return true;
+            } else{
+                $('#pw_check').attr('data-check', '0');
+                return false;
+            } 
+        }
+
+        function SamePassword() {
+            var pw = $('#pw_input').val();
+            var pw_confirm = $('#pw_confirm_input').val();
+            if (pw == pw_confirm)
+                return true;
+            else return false;
         }
 
         function CheckIDAllow() {
@@ -107,14 +179,21 @@
         <div class="bg-transpert signup_div center-block">
             <h3 class="card-title">회원가입</h3>
             <div class="form-group">
-                <form id="sign_up_form" method="POST" action="./Post/PostSignUp.php" enctype="multipart/form-data"> 
+                <form id="sign_up_form" method="POST" action="./Post/PostSignUp.php" enctype="multipart/form-data">
                     <input hidden id="id_check" data-check="0">
                     <input class="form-control" id="id_input" name="id" type="text" placeholder="ID">
                     <span id="id_deny" style="color:red">이미 사용중인 ID입니다</span>
                     <span id="id_allow" style="color:royalblue">사용 가능한 ID입니다</span>
                     <br>
-                    <input class="form-control" id="pw_input" name="pw" type="password" placeholder="비밀번호"><br>
-                    <input class="form-control" id="pw_confirm_input" name="pw_confirm" type="password" placeholder="비밀번호 확인"><br>
+                    <input class="form-control" id="pw_input" name="pw" type="password" placeholder="비밀번호(영문 대/소문자 및 특수문자 포함 8자 이상)">
+                    <span id="pw_deny" style="color:red">비밀번호는 영문 대/소문자 및 특수문자 포함 8자 이상이여야 합니다</span>
+                    <span id="pw_allow" style="color:royalblue">사용 가능한 비밀번호입니다</span>
+                    <br>
+                    <input hidden id="pw_check" data-check="0">
+                    <input class="form-control" id="pw_confirm_input" name="pw_confirm" type="password" placeholder="비밀번호 확인">
+                    <span id="pw_dif" style="color:red">비밀번호가 일치하지 않습니다</span>
+                    <span id="pw_same" style="color:royalblue">비밀번호가 일치합니다</span>
+                    <br>
                     <input class="form-control" id="name_input" name="name" type="text" placeholder="이름"><br>
                     <input class="form-control" id="business_name_input" name="business_name" type="text" placeholder="사업장명"><br>
                     <input class="form-control" id="business_num_input" name="business_num" type="text" placeholder="사업자 번호"><br>

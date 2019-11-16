@@ -48,7 +48,7 @@
                 $index = 0;
                 while ($data = mysqli_fetch_array($orderResult)) {
                     $index++;
-                
+
                     //첫 데이터인지 확인
                     if ($isFirst) {
                         $lastTime = $data["OrderTime"];
@@ -67,10 +67,10 @@
                     //마지막인지 확인
                     if ($orderTime != $lastTime || $location != $lastLocation || $index > $numOfRow) {
                         //card 크기 조절
-                        for($i=0;$i<4-$index; $i++) {
+                        for ($i = 0; $i < 4 - $index; $i++) {
                             echo '<div class="card" style="visibility:hidden"></div>';
                         }
-                        $index=0;
+                        $index = 0;
                         ?>
             </div>
             <div class="order-content-div">
@@ -79,8 +79,8 @@
                 <div class="btn-group">
                     <button class="btn btn-success btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $lastStatus ?></button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="./Get/UpdateStatus.php?status=2&location=<?=$lastLocation?>&ordertime=<?=$lastTime?>">배송 준비중</a>
-                        <a class="dropdown-item" href="./Get/UpdateStatus.php?status=3&location=<?=$lastLocation?>&ordertime=<?=$lastTime?>">배송중</a>
+                        <a class="dropdown-item" href="./Get/UpdateStatus.php?status=2&location=<?= $lastLocation ?>&ordertime=<?= $lastTime ?>">배송 준비중</a>
+                        <a class="dropdown-item" href="./Get/UpdateStatus.php?status=3&location=<?= $lastLocation ?>&ordertime=<?= $lastTime ?>">배송중</a>
                     </div>
                 </div>
             </div>
@@ -103,7 +103,7 @@
 
         <?php
         }
-        for($i=0;$i<3-$index; $i++) {
+        for ($i = 0; $i < 3 - $index; $i++) {
             echo '<div class="card" style="visibility:hidden"></div>';
         }
         ?>
@@ -114,8 +114,8 @@
                 <div class="btn-group">
                     <button class="btn btn-success btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $lastStatus ?></button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="./Get/UpdateStatus.php?status=2&location=<?=$lastLocation?>&ordertime=<?=$lastTime?>">배송 준비중</a>
-                        <a class="dropdown-item" href="./Get/UpdateStatus.php?status=3&location=<?=$lastLocation?>&ordertime=<?=$lastTime?>">배송중</a>
+                        <a class="dropdown-item" href="./Get/UpdateStatus.php?status=2&location=<?= $lastLocation ?>&ordertime=<?= $lastTime ?>">배송 준비중</a>
+                        <a class="dropdown-item" href="./Get/UpdateStatus.php?status=3&location=<?= $lastLocation ?>&ordertime=<?= $lastTime ?>">배송중</a>
                     </div>
                 </div>
             </div>
