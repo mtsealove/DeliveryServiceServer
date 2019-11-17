@@ -1,14 +1,12 @@
 <?php
 include_once "../../config.php";
-//Call<Result> UpdateStatus(@Field("Status") int Status, @Field("OrderTime") String OrderTime, @Field("ManagerID") String managerID);
+include_once "../../FCM.php";
 $status = $_POST["Status"];
 $time = $_POST["OrderTime"];
 $mangerID = $_POST["ManagerID"];
 $driverID = $_POST["DriverID"];
 
 $query = "update orders set status=$status, DriverID='$driverID' where managerID='$mangerID' and ordertime='$time'";
-
-
 
 try {
     mysqli_query($db["conn"], $query);
@@ -22,6 +20,33 @@ try {
     $result = array(
         "Result" => "Ok"
     );
+    $tokenQuery = "select token from members where ID in(
+        select distinct MemberID from orders where CompleteTime='$compelteTime')";
+
+    $tokenResult = mysqli_query($db["conn"], $tokenQuery);
+    $tokens = array();
+    while ($row = mysqli_fetch_assoc($tokenResult)) {
+        $tokens[] = $row["token"];
+    }
+
+    $arr = array();
+    $arr['title'] = "주문배달 서비스";
+    switch($status){
+        case 1:
+            $arr['message'] = "주문 상태가 변경되었습니다(대기중)";
+        break;
+        case 2:
+            $arr['message'] = "주문 상태가 변경되었습니다(준비중)";
+        break;
+        case 3:
+            $arr['message'] = "주문 상태가 변경되었습니다(배송중)";
+        break;
+        case 4:
+            $arr['message'] = "주문 상태가 변경되었습니다(배송 완료)";
+        break;
+    }
+    Normal_Push($tokens, $arr);
+
     echo json_encode($result, JSON_UNESCAPED_UNICODE);
 } catch (Exception $e) {
     $result = array(

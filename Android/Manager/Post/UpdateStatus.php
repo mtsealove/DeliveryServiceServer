@@ -9,20 +9,6 @@ $query = "update orders set status=$status
 where OrderTime='$OrderTime'
 and ManagerID='$managerID'";
 
-/*$arr = array();
-$arr['title'] = "주문배달 서비스";
-$arr['message'] = "새로운 주문이 있습니다";
-$message_status = Driver_Push($tokens, $arr);
-
-$managerTokenQuery="select Token from managers where ID='$ManagerID'";
-$managerTokens=array();
-$managerTokenResult=mysqli_query($db["conn"], $managerTokenQuery);
-while($row=mysqli_fetch_assoc($managerTokenResult)) {
-    $managerTokens[]=$row["Token"];
-}
-Manager_Push($managerTokens, $arr);
-*/
-
 try {
     mysqli_query($db["conn"], $query);
     $memberQuery = "select MemberID from orders where OrderTime='$OrderTime' and ManagerID='$managerID'";
