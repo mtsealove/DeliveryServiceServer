@@ -9,7 +9,7 @@
     include_once "config.php";
     if(isset($_SESSION["UserID"])&&isset($_SESSION["UserName"])) {
         echo "<script>
-        location.href='Home.php?current=0'
+        location.href='index.php?current=0'
         </script>";
     }
     ?>
@@ -68,7 +68,7 @@
             <br>
             <div style="text-align:center">
                 <label><a href="SignUp.php">회원가입&nbsp;&nbsp;</a></label>
-                <label>&nbsp;&nbsp;ID/비밀번호 찾기</label>
+                <label><a href="FindPw.php">비밀번호 재설정</a></label>
             </div>
         </div>
     </div>

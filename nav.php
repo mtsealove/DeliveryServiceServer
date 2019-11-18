@@ -33,7 +33,7 @@ $classes[$current] = 'nav-item active';
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="<?= $classes[0] ?>">
-        <a class="nav-link" href="Home.php?current=0">Home
+        <a class="nav-link" href="index.php?current=0">Home
           <span class="sr-only">(current)</span></a>
       </li>
       <li class="<?= $classes[1] ?>">

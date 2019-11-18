@@ -33,7 +33,7 @@
         
         //메인 페이지로 이동
         echo "<script>
-        location.href='../Home.php?current=0';
+        location.href='../index.php?current=0';
         </script>";
         
     }

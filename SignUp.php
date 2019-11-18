@@ -111,19 +111,19 @@
             var special = "!@#$%^&*()_+-=,./<>[]{}";
 
             for (var i = 0; i < lower.length; i++) {
-                if (password.indexOf(lower.charAt(i))) {
+                if (password.indexOf(lower.charAt(i))!=-1) {
                     lowerB = true;
                     break;
                 }
             }
             for (var i = 0; i < upper.length; i++) {
-                if (password.indexOf(upper.charAt(i))) {
+                if (password.indexOf(upper.charAt(i))!=-1) {
                     upperB = true;
                     break;
                 }
             }
             for (var i = 0; i < special.length; i++) {
-                if (password.indexOf(special.charAt(i))) {
+                if (password.indexOf(special.charAt(i))!=-1) {
                     specialB = true;
                     break;
                 }
@@ -181,9 +181,9 @@
             <div class="form-group">
                 <form id="sign_up_form" method="POST" action="./Post/PostSignUp.php" enctype="multipart/form-data">
                     <input hidden id="id_check" data-check="0">
-                    <input class="form-control" id="id_input" name="id" type="text" placeholder="ID">
-                    <span id="id_deny" style="color:red">이미 사용중인 ID입니다</span>
-                    <span id="id_allow" style="color:royalblue">사용 가능한 ID입니다</span>
+                    <input class="form-control" id="id_input" name="id" type="email" placeholder="메일 주소">
+                    <span id="id_deny" style="color:red">사용 불가능한 메일입니다</span>
+                    <span id="id_allow" style="color:royalblue">사용 가능한 메일입니다</span>
                     <br>
                     <input class="form-control" id="pw_input" name="pw" type="password" placeholder="비밀번호(영문 대/소문자 및 특수문자 포함 8자 이상)">
                     <span id="pw_deny" style="color:red">비밀번호는 영문 대/소문자 및 특수문자 포함 8자 이상이여야 합니다</span>

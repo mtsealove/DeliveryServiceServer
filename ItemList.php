@@ -86,19 +86,19 @@
                         $price = $data['Price'];
                         $path = $data['ImagePath'];
                         $ItemName = $data["ItemName"];
-                        $itemID=$data["ID"];
+                        $itemID = $data["ID"];
                         $index++;
 
                         //카드 뷰 출력
                         ?>
-                    <div class="card" onclick="location.href='InquireItem.php?current=2&ItemID=<?=$itemID?>'">
-                        <img class="card-img-top" height="180" src="./Images/<?=$path?>" alt="Card image cap">
+                    <div class="card" onclick="location.href='InquireItem.php?current=2&ItemID=<?= $itemID ?>'">
+                        <img class="card-img-top" height="180" src="./Images/<?= $path ?>" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title"><?=$ItemName?></h5>
-                            <p class="card-text">매출: ₩<?=number_format($total)?></p>
+                            <h5 class="card-title"><?= $ItemName ?></h5>
+                            <p class="card-text">매출: ₩<?= number_format($total) ?></p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">상품가격: ₩<?=number_format($price)?></small>
+                            <small class="text-muted">상품가격: ₩<?= number_format($price) ?></small>
                         </div>
                     </div>
                 <?php  }
@@ -122,11 +122,12 @@
             $pageQuery = "select count(*) cnt from Items where ManagerID='" . $_SESSION['UserID'] . "'";
             $pageResult = mysqli_query($db["conn"], $pageQuery);
             while ($data = mysqli_fetch_array($pageResult)) {
-                $total_page = $data['cnt'];
+                $count = $data['cnt'];
             }
-            $total_page = ceil($total_page / ($sep * 2));
+            
+            $total_page = ceil($count / ($sep * 2));
 
-            if ($total_page <= $page) {
+            if ($total_page <= $page+1) {
                 $next = "disabled";
             } else $next = "";
             ?>
@@ -137,12 +138,10 @@
                         <a class="page-link" href="?current=1&page=<?= $page - 1 ?>&sort=<?= $sort ?>" tabindex="-1">이전</a>
                     </li>
                     <?php
-                    $tmp_page = $total_page;
-                    while ($tmp_page / 10 != 0) {
-                        $tmp_page--;
-                    }
-                    for ($p = $tmp_page; $p < $tmp_page + 10; $p++) {
+                    $big=floor($total_page/10);
+                    for ($p = 10*$big; $p < 10*$big+10; $p++) {
                         //현재 페이지
+                        if($p*12>$count) break;
                         if ($page == $p) { ?>
                             <li class="page-item active">
                                 <a class="page-link" href="#"><?= $page + 1 ?> <span class="sr-only">(current)</span></a>
@@ -153,13 +152,11 @@
                             <li class="page-item"><a class="page-link" href="?current=1&sort=<?= $sort ?>&page=<?= $p ?>"><?= $p + 1 ?></a></li>
                     <?php
                         }
-                        if ($p = $total_page)
-                            break;
                     }
                     ?>
 
                     <li class="page-item  <?= $next ?>"">
-                        <a class=" page-link href="?current=1&page=<?= $page + 1 ?>&sort=<?= $sort ?>">다음</a>
+                        <a class=" page-link" href="?current=1&page=<?= $page + 1 ?>&sort=<?= $sort ?>">다음</a>
                     </li>
                 </ul>
             </nav>

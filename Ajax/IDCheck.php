@@ -4,11 +4,11 @@ $ID = $_POST["ID"];
 $query = "select ID from Managers where ID='$ID'";
 $result = mysqli_query($db["conn"], $query);
 $numRow = mysqli_num_rows($result);
-if ($numRow == 0) {
+
+if ($numRow == 0 && strpos($ID, "@") && (strpos($ID, ".com")||strpos($ID, ".net")||strpos($ID, ".kr"))) {
     $ret["check"] = true;
 } else {
     $ret["check"] = false;
 }
 mysqli_close($db["conn"]);
 echo json_encode($ret);
-?>
