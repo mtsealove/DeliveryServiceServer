@@ -79,8 +79,8 @@
                 <div class="btn-group">
                     <button class="btn btn-success btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $lastStatus ?></button>
                     <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./Get/UpdateStatus.php?status=1&location=<?= $lastLocation ?>&ordertime=<?= $lastTime ?>">대기중</a>
                         <a class="dropdown-item" href="./Get/UpdateStatus.php?status=2&location=<?= $lastLocation ?>&ordertime=<?= $lastTime ?>">배송 준비중</a>
-                        <a class="dropdown-item" href="./Get/UpdateStatus.php?status=3&location=<?= $lastLocation ?>&ordertime=<?= $lastTime ?>">배송중</a>
                     </div>
                 </div>
             </div>
@@ -114,8 +114,8 @@
                 <div class="btn-group">
                     <button class="btn btn-success btn-block dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $lastStatus ?></button>
                     <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./Get/UpdateStatus.php?status=1&location=<?= $lastLocation ?>&ordertime=<?= $lastTime ?>">대기중</a>
                         <a class="dropdown-item" href="./Get/UpdateStatus.php?status=2&location=<?= $lastLocation ?>&ordertime=<?= $lastTime ?>">배송 준비중</a>
-                        <a class="dropdown-item" href="./Get/UpdateStatus.php?status=3&location=<?= $lastLocation ?>&ordertime=<?= $lastTime ?>">배송중</a>
                     </div>
                 </div>
             </div>

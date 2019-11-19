@@ -13,6 +13,9 @@ try {
     mysqli_query($db["conn"], $query);
     $memberQuery = "select MemberID from orders where OrderTime='$OrderTime' and ManagerID='$managerID'";
     $memberResult = mysqli_query($db["conn"], $memberQuery);
+    $memberID="";
+
+    
     while ($row = mysqli_fetch_array($memberResult)) {
         $memberID = $row["MemberID"];
     }

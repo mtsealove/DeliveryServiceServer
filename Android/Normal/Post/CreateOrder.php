@@ -21,18 +21,10 @@ values($ItemID, '$ManagerID', '$MemberID', '$OrderTime', '$Location', 1, '$locat
 
 mysqli_query($db["conn"], $query);
 
-//FCM 발송
-$tokenQuery="select Token from drivers where ManagerID='$ManagerID'";
-$tokens=array();
-$tokenResult=mysqli_query($db["conn"], $tokenQuery);
-while($row=mysqli_fetch_assoc($tokenResult)) {
-    $tokens[] = $row["Token"];
-}
 
 $arr = array();
 $arr['title'] = "주문배달 서비스";
 $arr['message'] = "새로운 주문이 있습니다";
-$message_status = Driver_Push($tokens, $arr);
 
 $managerTokenQuery="select Token from managers where ID='$ManagerID'";
 $managerTokens=array();
