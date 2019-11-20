@@ -23,18 +23,17 @@
 
         //쿠키 저장
         if(isset($_POST["save"])) {
-            setcookie("UserID", $ID, time()+86400*30);
-            setcookie("pw", $password, time()+86400*30);
-        } else {
+            setcookie("UserID", $ID, time()+86400*30,"/");
+            setcookie("pw", $password, time()+86400*30, "/");
+        } else {    //쿠키 삭제
             setcookie("UserID", '', time()-1);
             setcookie("pw", '', time()-1);
         }
         
-        
+
         //메인 페이지로 이동
         echo "<script>
         location.href='../index.php?current=0';
         </script>";
-        
     }
 ?>
